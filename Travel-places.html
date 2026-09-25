@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel - Must See Places</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #111;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Main wrapper */
+.card-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #151515;
+  padding: 35px 60px 25px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.subtitle {
+  margin-left: 25px;
+  color: #777;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 35px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #999;
+}
+
+/* Main content */
+.content-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  padding: 60px 0;
+}
+
+/* Hero text */
+.hero-text {
+  width: 30%;
+  min-width: 280px;
+}
+
+.hero-text h1 {
+  font-size: clamp(55px, 6vw, 95px);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -5px;
+  margin-bottom: 30px;
+}
+
+.hero-text p {
+  max-width: 320px;
+  color: #888;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+/* Explore button */
+.btn-explore {
+  border: none;
+  background: #fff;
+  color: #111;
+  padding: 15px 32px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-explore:hover {
+  background: #d8d8d8;
+  transform: translateY(-2px);
+}
+
+/* Cards section */
+.cards-carousel {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+
+/* Individual card */
+.card {
+  position: relative;
+  width: 250px;
+  height: 390px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #222;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+/* Dark gradient over image */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.15) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Card text */
+.card-overlay {
+  position: absolute;
+  z-index: 2;
+  bottom: 25px;
+  left: 25px;
+  right: 15px;
+}
+
+.card-overlay h2 {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.card-overlay p {
+  color: #ddd;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.card-overlay i {
+  margin-right: 6px;
+  color: #fff;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #292929;
+  padding-top: 25px;
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons a {
+  color: #777;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+/* Category */
+.category {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #777;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Carousel controls */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.page-num {
+  color: #777;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.arrow-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.arrow-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #444;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+
+
+(max-width: 1000px) {
+  .card-wrapper {
+    padding: 30px 35px 25px;
+  }
+
+  .content-container {
+    gap: 35px;
+  }
+
+  .hero-text {
+    width: 35%;
+    min-width: 240px;
+  }
+
+  .hero-text h1 {
+    font-size: 60px;
+  }
+
+  .cards-carousel {
+    gap: 15px;
+  }
+
+  .card {
+    width: 210px;
+    height: 340px;
+  }
+}
+
+/* ----------------------------- */
+/* Mobile */
+/* ----------------------------- */
+
+@media (max-width: 700px) {
+  .card-wrapper {
+    padding: 25px 20px;
+    min-height: 100vh;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .subtitle {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .content-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px 0 35px;
+    gap: 35px;
+  }
+
+  .hero-text {
+    width: 100%;
+  }
+
+  .hero-text h1 {
+    font-size: 58px;
+    letter-spacing: -3px;
+  }
+
+  .hero-text p {
+    max-width: 400px;
+  }
+
+  .cards-carousel {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+  }
+
+  
+
+  .card {
+    width: 220px;
+    height: 320px;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .category {
+    display: none;
+  }
+
+  .carousel-controls {
+    margin-left: auto;
+  }
+}
+
+/* Small phones */ {
+  .logo {
+    font-size: 28px;
+  }
+
+  .nav-links a {
+    font-size: 9px;
+  }
+
+  .hero-text h1 {
+    font-size: 50px;
+  }
+
+  .card {
+    width: 200px;
+    height: 290px;
+  }
+
+  .card-overlay h2 {
+    font-size: 21px;
+  }
+
+  .carousel-controls {
+    gap: 12px;
+  }
+
+  .arrow-btn {
+    width: 34px;
+    height: 34px;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="card-wrapper">
+    
+    <header class="navbar">
+      <div class="logo">travel.</div>
+      <div class="subtitle">CARD SLIDER FOR WORDPRESS</div>
+      <nav class="nav-links">
+        <a href="#">ABOUT</a>
+        <a href="#">CONTACT</a>
+      </nav>
+    </header>
+
+    
+    <main class="content-container">
+      
+      <section class="hero-text">
+        <h1>Must see<br />Places</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+          elementum metus eu enim rhoncus posuere.
+        </p>
+        <button class="btn-explore">Explore</button>
+      </section>
+
+      
+      <section class="cards-carousel">
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?auto=format&fit=crop&w=600&q=80"
+            alt="Cappadocia"
+          />
+          <div class="card-overlay">
+            <h2>Cappadocia</h2>
+            <p><i class="fa-solid fa-location-dot"></i> TURKEY</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80"
+            alt="Santorini"
+          />
+          <div class="card-overlay">
+            <h2>Santorini</h2>
+            <p><i class="fa-solid fa-location-dot"></i> GREECE</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80"
+            alt="Bali"
+          />
+          <div class="card-overlay">
+            <h2>Bali</h2>
+            <p><i class="fa-solid fa-location-dot"></i> INDONESIA</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    
+    <footer class="footer">
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+
+      <div class="category">UNIQUE  DESTINATIONS</div>
+
+      <div class="carousel-controls">
+        <span class="page-num">01 / 03</span>
+        <div class="arrow-buttons">
+          <button class="arrow-btn"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="arrow-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>         
